@@ -8,6 +8,7 @@ namespace Jbnahan\Domain\School\Enricher;
 
 use Broadway\Domain\Metadata;
 use Broadway\EventSourcing\MetadataEnrichment\MetadataEnricherInterface;
+use Doctrine\ORM\EntityManager;
 
 
 class StudentSubscribedEnricher implements MetadataEnricherInterface {
@@ -22,7 +23,7 @@ class StudentSubscribedEnricher implements MetadataEnricherInterface {
 	public function enrich(Metadata $metadata){
 		$obj = $this->em->getRepository("JbnahanSchoolBundle:StudentsClass")->findOneBy(array('id'=>$this->event->classId));
         $data = array(
-            'fullname' => $obj->__toString();
+            'fullname' => (string) $obj
         );
         $newMetadata = new Metadata($data);
         return $metadata->merge($newMetadata);

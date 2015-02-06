@@ -8,13 +8,13 @@
 
 namespace Jbnahan\Domain\School\Listener;
 
+use Broadway\Domain\DomainMessage;
 use Jbnahan\Domain\School\Event\StudentRegistred;
 use Jbnahan\Domain\School\Event\StudentSubscribedInClass;
 use Jbnahan\Bundle\SchoolBundle\Entity\Student;
 use Jbnahan\Bundle\SchoolBundle\Entity\StudentSubscription;
 
 use Broadway\EventHandling\EventListenerInterface;
-use Broadway\Domain\DomainMessageInterface;
 use Doctrine\ORM\EntityManager;
 /**
  * Description of StudentViewListener
@@ -31,7 +31,7 @@ class StudentViewListener implements EventListenerInterface {
     }
 
 
-    public function handle(DomainMessageInterface $domainMessage)
+    public function handle(DomainMessage $domainMessage)
     {
         
         //print_r($domainMessage);
